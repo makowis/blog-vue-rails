@@ -10,7 +10,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1
   def show
-    render json: @article
+    render json: @article.to_json(include: :comments)
   end
 
   # POST /articles
@@ -41,7 +41,7 @@ class ArticlesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
-      @article = Article.find(params[:id])
+      @article = Article.includes(:comments).find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
