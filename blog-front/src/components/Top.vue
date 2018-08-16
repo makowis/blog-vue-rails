@@ -2,9 +2,9 @@
   <div class="top">
     <h1>Blog TOP</h1>
     <ul :class="$style.userList">
-      <li v-for="(item, key) in users" v-bind:key="key">
+      <li v-for="(item, key) in articles" v-bind:key="key">
         <p>
-          {{item.name}}
+          {{item.body}}
         </p>
         <p :class="$style.timeLabel">
           {{item.created_at}}
@@ -30,7 +30,7 @@ export default {
   name: 'Top',
   data() {
     return {
-      users: [],
+      articles: [],
     };
   },
   created() {
@@ -38,9 +38,9 @@ export default {
   },
   methods: {
     listen() {
-      axiosClient.get('/users')
+      axiosClient.get('/articles')
         .then((response) => {
-          this.users = response.data;
+          this.articles = response.data;
         });
     },
   },
