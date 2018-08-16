@@ -3,31 +3,25 @@
     <h1>Blog TOP</h1>
     <ul :class="$style.articles">
       <li v-for="(item, key) in articles" v-bind:key="key">
-        <p>
-          {{item.title}}
-        </p>
-        <p :class="$style.timeLabel">
-          {{item.created_at}}
-        </p>
-        <p :class="$style.userLabel">
-          {{item.user.name}}
-        </p>
+        <router-link v-bind:to="{ name : 'Article', params : { id: item.id }}">
+          <p>
+            {{item.title}}
+          </p>
+          <p :class="$style.timeLabel">
+            {{item.created_at}}
+          </p>
+          <p :class="$style.userLabel">
+            {{item.user.name}}
+          </p>
+        </router-link>
+
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-
-const axiosClient = axios.create({
-  baseURL: 'http://localhost:3000', // バックエンドB のURL:port を指定する
-  headers: {
-    'Content-Type': 'application/json',
-    'X-Requested-With': 'XMLHttpRequest',
-  },
-  responseType: 'json',
-});
+import blogApiClient from '../api/blogApi';
 
 export default {
   name: 'Top',
@@ -41,10 +35,7 @@ export default {
   },
   methods: {
     listen() {
-      axiosClient.get('/articles')
-        .then((response) => {
-          this.articles = response.data;
-        });
+      blogApiClient.get('/articles').then((result) => { this.articles = result.data; });
     },
   },
 };
