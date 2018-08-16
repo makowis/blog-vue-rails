@@ -1,13 +1,16 @@
 <template>
   <div class="top">
     <h1>Blog TOP</h1>
-    <ul :class="$style.userList">
+    <ul :class="$style.articles">
       <li v-for="(item, key) in articles" v-bind:key="key">
         <p>
-          {{item.body}}
+          {{item.title}}
         </p>
         <p :class="$style.timeLabel">
           {{item.created_at}}
+        </p>
+        <p :class="$style.userLabel">
+          {{item.user.name}}
         </p>
       </li>
     </ul>
@@ -48,7 +51,7 @@ export default {
 </script>
 
 <style module>
-.userList {
+.articles {
   padding: 0;
   margin-left: auto;
   margin-right: auto;
@@ -56,14 +59,25 @@ export default {
   text-align: left;
   max-width: 90%;
 }
-.userList li {
+.articles li {
   position: relative;
   background-color: white;
   border: 1px solid black;
   padding: 5px 10px;
   margin-bottom: 5px;
 }
-.userList .timeLabel {
+.articles .timeLabel {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  font-size: smaller;
+  text-align: right;
+  margin-bottom: 0;
+}
+.articles .userLabel {
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
   font-size: smaller;
   text-align: right;
   margin-bottom: 0;

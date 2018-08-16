@@ -3,9 +3,9 @@ class ArticlesController < ApplicationController
 
   # GET /articles
   def index
-    @articles = Article.all
+    @articles = Article.includes(:user).all
 
-    render json: @articles
+    render json: @articles.to_json(include: :user)
   end
 
   # GET /articles/1
