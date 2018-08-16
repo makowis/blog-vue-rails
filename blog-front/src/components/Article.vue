@@ -4,6 +4,11 @@
     <p>
       {{article.body}}
     </p>
+    <ul>
+      <li v-for="(comment, key) in article.comments" v-bind:key="key">
+        {{comment.body}}
+      </li>
+    </ul>
     <router-link to="/">TOPに戻る</router-link>
   </div>
 </template>
