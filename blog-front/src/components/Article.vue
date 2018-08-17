@@ -14,8 +14,6 @@
 </template>
 
 <script>
-import blogApiClient from '../api/blogApi';
-
 export default {
   name: 'article',
   data() {
@@ -29,7 +27,7 @@ export default {
   methods: {
     listen() {
       const url = `/articles/${this.$route.params.id}`;
-      blogApiClient.get(url).then((result) => { this.article = result.data; });
+      this.$http.plain.get(url).then((result) => { this.article = result.data; });
     },
   },
 };
