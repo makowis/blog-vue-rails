@@ -21,8 +21,6 @@
 </template>
 
 <script>
-import blogApiClient from '../api/blogApi';
-
 export default {
   name: 'Top',
   data() {
@@ -35,7 +33,7 @@ export default {
   },
   methods: {
     listen() {
-      blogApiClient.get('/articles').then((result) => { this.articles = result.data; });
+      this.$http.plain.get('/articles').then((result) => { this.articles = result.data; });
     },
   },
 };
