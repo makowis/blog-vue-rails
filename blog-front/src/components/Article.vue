@@ -65,9 +65,11 @@ export default {
       const url = `/articles/${this.$route.params.id}`;
       this.$http.plain.get(url).then((result) => { this.article = result.data; });
 
-      this.$http.secured.get('/auth_user').then((userResult) => {
-        this.user = userResult.data;
-      });
+      if (isSignedIn) {
+        this.$http.secured.get('/auth_user').then((userResult) => {
+          this.user = userResult.data;
+        });
+      }
     },
     isSignedIn() {
       return localStorage.signedIn;
