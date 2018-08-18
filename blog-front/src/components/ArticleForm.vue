@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <div>
     <h1>Post Article</h1>
     <form @submit.prevent="addArticle">
       <div class="alert alert-danger" v-if="error">{{ error }}</div>
@@ -13,7 +13,7 @@
       </div>
       <button type="submit" class="btn btn-block btn-primary mb-3">Post</button>
     </form>
-  </main>
+  </div>
 </template>
 
 <script>

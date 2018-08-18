@@ -13,7 +13,9 @@
         <router-link to="/signup" class="btn btn-outline-info my-2">Sign up</router-link>
       </div>
     </nav>
-    <router-view/>
+    <main class="container py-3 px-2">
+      <router-view/>
+    </main>
   </div>
 </template>
 
@@ -37,8 +39,4 @@ export default {
 };
 </script>
 
-<style>
-#app {
-  text-align: center;
-}
-</style>
+<style></style>

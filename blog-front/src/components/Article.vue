@@ -1,15 +1,22 @@
 <template>
-  <div>
+  <div class="text-center">
     <h1>{{article.title}}</h1>
-    <p>
-      {{article.body}}
-    </p>
-    <ul>
+    <div>
+      <p>
+        {{article.body}}
+      </p>
+    </div>
+    <ul class="list-unstyled">
       <li v-for="(comment, key) in article.comments" v-bind:key="key">
-        {{comment.body}}
+        <div class="card">
+          <div class="card-body">
+            <p>
+              {{comment.body}}
+            </p>
+          </div>
+        </div>
       </li>
     </ul>
-    <router-link to="/">TOPに戻る</router-link>
   </div>
 </template>
 
@@ -18,7 +25,7 @@ export default {
   name: 'article',
   data() {
     return {
-      article: 'aaaaa',
+      article: '',
     };
   },
   created() {
