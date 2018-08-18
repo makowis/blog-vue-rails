@@ -50,7 +50,7 @@ export default {
           const newArticle = response.data;
           this.$router.replace(`/article/${newArticle.id}`);
         })
-        .catch(error => this.setError(error, 'Cannot create todo'));
+        .catch(error => this.setError(error, 'Cannot post article'));
     },
     checkSignedIn() {
       if (!localStorage.signedIn) {
