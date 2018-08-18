@@ -2,23 +2,12 @@
   <div>
     <h1>{{article.title}}</h1>
     <hr>
-    <p>
-      {{article.body}}
-    </p>
-    <div v-if="isSignedIn()">
-      <p>Post comment</p>
-      <form @submit.prevent="addComment">
-        <div class="form-group">
-          <label for="comment-body">comment</label>
-          <textarea v-model="commentBody" class="form-control"
-                    id="comment-body" rows="5"></textarea>
-        </div>
-        <button type="submit" class="btn btn-block btn-primary mb-3">Post</button>
-      </form>
+    <div class="mb-5">
+      <p :class="$style.articleBody">{{article.body}}</p>
     </div>
 
-    <ul class="list-unstyled" v-if="article.comments">
-      <li v-for="(comment) in article.comments" v-bind:key="comment.id">
+    <ul v-if="article.comments" class="list-unstyled mb-3">
+      <li v-for="(comment) in article.comments" v-bind:key="comment.id" class="mb-2">
         <div class="card">
           <div class="card-body">
             <p class="m-0">
@@ -28,6 +17,21 @@
         </div>
       </li>
     </ul>
+    <div v-if="isSignedIn()" class="card">
+      <div class="card-header">
+        Post comment
+      </div>
+      <div class="card-body">
+        <form @submit.prevent="addComment">
+          <div class="form-group">
+            <label for="comment-body">comment</label>
+            <textarea v-model="commentBody" class="form-control"
+                      id="comment-body" rows="5"></textarea>
+          </div>
+          <button type="submit" class="btn btn-block btn-primary mb-3">Post</button>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -67,5 +71,8 @@ export default {
 };
 </script>
 
-<style>
+<style module>
+.articleBody {
+  white-space: pre-wrap;
+}
 </style>
