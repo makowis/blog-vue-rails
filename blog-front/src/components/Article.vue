@@ -2,6 +2,12 @@
   <div>
     <h1>{{article.title}}</h1>
     <hr>
+    <div v-if="hasArticle()" class="mb-3">
+      <router-link :to="{ path: `/article/${article.id}/edit` }" class="btn btn-outline-primary">
+        <i class="fas fa-edit"></i>
+        Edit
+      </router-link>
+    </div>
     <div class="mb-5">
       <p :class="$style.articleBody">{{article.body}}</p>
     </div>
@@ -41,6 +47,7 @@ export default {
   data() {
     return {
       article: '',
+      user: '',
       commentBody: '',
     };
   },
@@ -51,6 +58,10 @@ export default {
     listen() {
       const url = `/articles/${this.$route.params.id}`;
       this.$http.plain.get(url).then((result) => { this.article = result.data; });
+
+      this.$http.secured.get('/auth_user').then((userResult) => {
+        this.user = userResult.data;
+      });
     },
     isSignedIn() {
       return localStorage.signedIn;
@@ -66,6 +77,9 @@ export default {
           this.article.comments.unshift(response.data);
         })
         .catch(error => this.setError(error, 'Cannot post comment'));
+    },
+    hasArticle() {
+      return this.user.id === this.article.user_id;
     },
   },
 };
