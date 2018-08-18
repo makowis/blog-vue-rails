@@ -5,7 +5,6 @@
     <p>
       {{article.body}}
     </p>
-    <hr>
     <ul class="list-unstyled" v-if="article.comments">
       <li v-for="(comment, key) in article.comments" v-bind:key="key">
         <div class="card">
