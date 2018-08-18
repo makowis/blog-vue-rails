@@ -1,6 +1,12 @@
 <template>
   <div>
     <h1>My Page</h1>
+    <div class="mb-3">
+      <button @click="withdraw" type="button" class="btn btn-outline-danger">
+        <i class="fas fa-eraser"></i>
+        Withdraw
+      </button>
+    </div>
     <p>Id: {{user.id}}</p>
     <p>Name: {{user.name}}</p>
     <section>
@@ -46,12 +52,21 @@ export default {
       this.$http.secured.get('/auth_user').then((userResult) => {
         this.user = userResult.data;
         this.$http.plain.get(`users/${this.user.id}/articles`).then((result) => { this.articles = result.data; });
-      });
+      }).catch(() => this.$router.replace('/'));
     },
     checkSignedIn() {
       if (!localStorage.signedIn) {
         this.$router.replace('/');
       }
+    },
+    withdraw() {
+      this.$http.secured.delete(`/users/${this.user.id}`)
+        .then(() => {
+          delete localStorage.csrf;
+          delete localStorage.signedIn;
+          this.$router.replace('/');
+        })
+        .catch(error => this.setError(error, 'Cannot withdraw'));
     },
   },
 };
