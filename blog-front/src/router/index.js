@@ -5,6 +5,7 @@ import Signin from '@/components/Signin';
 import Signup from '@/components/Signup';
 import ArticleForm from '@/components/ArticleForm';
 import Article from '@/components/Article';
+import MyPage from '@/components/MyPage';
 
 Vue.use(Router);
 
@@ -35,6 +36,11 @@ export default new Router({
       path: '/article/:id',
       name: 'Article',
       component: Article,
+    },
+    {
+      path: '/mypage',
+      name: 'MyPage',
+      component: MyPage,
     },
   ],
 });

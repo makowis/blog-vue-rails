@@ -5,6 +5,9 @@ class ArticlesController < ApplicationController
   # GET /articles
   def index
     @articles = Article.includes(:user).all
+    if params[:user_id].present?
+      @articles.where(user_id: params[:user_id])
+    end
 
     render json: @articles.to_json(include: { user: { only: :name } })
   end

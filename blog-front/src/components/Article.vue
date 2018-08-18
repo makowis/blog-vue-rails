@@ -10,7 +10,8 @@
       <form @submit.prevent="addComment">
         <div class="form-group">
           <label for="comment-body">comment</label>
-          <textarea v-model="commentBody" class="form-control" id="comment-body" rows="5"></textarea>
+          <textarea v-model="commentBody" class="form-control"
+                    id="comment-body" rows="5"></textarea>
         </div>
         <button type="submit" class="btn btn-block btn-primary mb-3">Post</button>
       </form>

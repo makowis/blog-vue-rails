@@ -6,7 +6,14 @@
         <router-link to="/article/new" class="btn btn-outline-success my-2">
           <i class="fas fa-pen-fancy"></i>New Article
         </router-link>
-        <button @click="signOut" class="btn btn-outline-danger my-2" type="submit">Sign out</button>
+        <router-link to="/mypage" class="btn btn-outline-success my-2">
+          <i class="fas fa-user-cog"></i>
+          My Page
+        </router-link>
+        <button @click="signOut" class="btn btn-outline-danger my-2" type="submit">
+          <i class="fas fa-sign-out-alt"></i>
+          Sign out
+        </button>
       </div>
       <div v-else>
         <router-link to="/signin" class="btn btn-outline-success my-2">Sign in</router-link>
