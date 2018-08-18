@@ -3,7 +3,7 @@
     <h1>Blog TOP</h1>
     <ul class="list-unstyled">
       <li v-for="(item, key) in articles" v-bind:key="key">
-        <div class="card">
+        <div class="card mb-2">
           <div class="card-body">
             <p class="h5 card-title">
               <router-link v-bind:to="{ name : 'Article', params : { id: item.id }}">

@@ -82,7 +82,7 @@ export default {
       this.$http.secured.post(`/articles/${this.article.id}/comments`, { comment: { body: this.commentBody } })
         .then((response) => {
           this.commentBody = '';
-          this.article.comments.unshift(response.data);
+          this.article.comments.push(response.data);
         })
         .catch(error => this.setError(error, 'Cannot post comment'));
     },

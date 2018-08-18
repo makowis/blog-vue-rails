@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles
   def index
-    @articles = Article.includes(:user).all
+    @articles = Article.includes(:user).order(created_at: :desc).all
     if params[:user_id].present?
       @articles.where(user_id: params[:user_id])
     end
