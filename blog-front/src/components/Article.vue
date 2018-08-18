@@ -8,8 +8,10 @@
     <div v-if="isSignedIn()">
       <p>Post comment</p>
       <form @submit.prevent="addComment">
-        <label for="comment-body">comment</label>
-        <textarea v-model="commentBody" class="form-control" id="comment-body" rows="5"></textarea>
+        <div class="form-group">
+          <label for="comment-body">comment</label>
+          <textarea v-model="commentBody" class="form-control" id="comment-body" rows="5"></textarea>
+        </div>
         <button type="submit" class="btn btn-block btn-primary mb-3">Post</button>
       </form>
     </div>
@@ -53,8 +55,9 @@ export default {
       if (!commentBodyValue) {
         return;
       }
-      this.$http.secured.post('/comments', { comment: { body: this.commentBody, article_id: this.article.id } })
+      this.$http.secured.post(`/articles/${this.article.id}/comments`, { comment: { body: this.commentBody } })
         .then((response) => {
+          this.commentBody = '';
           this.article.comments.unshift(response.data);
         })
         .catch(error => this.setError(error, 'Cannot post comment'));
