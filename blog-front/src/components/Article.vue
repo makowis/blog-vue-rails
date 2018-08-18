@@ -1,12 +1,12 @@
 <template>
-  <div class="text-center">
+  <div>
     <h1>{{article.title}}</h1>
-    <div>
-      <p>
-        {{article.body}}
-      </p>
-    </div>
-    <ul class="list-unstyled">
+    <hr>
+    <p>
+      {{article.body}}
+    </p>
+    <hr>
+    <ul class="list-unstyled" v-if="article.comments">
       <li v-for="(comment, key) in article.comments" v-bind:key="key">
         <div class="card">
           <div class="card-body">
@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  name: 'article',
+  name: 'article-show',
   data() {
     return {
       article: '',
@@ -40,6 +40,5 @@ export default {
 };
 </script>
 
-<style scoped>
-
+<style>
 </style>
