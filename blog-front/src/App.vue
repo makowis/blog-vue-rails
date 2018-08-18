@@ -3,6 +3,9 @@
     <nav class="navbar navbar-light bg-light">
       <router-link to="/" class="navbar-brand">Blog</router-link>
       <div v-if="idSignedIn()" class="ml-auto">
+        <router-link to="/article/new" class="btn btn-outline-success my-2">
+          <i class="fas fa-pen-fancy"></i>New Article
+        </router-link>
         <button @click="signOut" class="btn btn-outline-danger my-2" type="submit">Sign out</button>
       </div>
       <div v-else>

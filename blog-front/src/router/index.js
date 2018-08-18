@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Top from '@/components/Top';
 import Signin from '@/components/Signin';
 import Signup from '@/components/Signup';
+import ArticleForm from '@/components/ArticleForm';
 import Article from '@/components/Article';
 
 Vue.use(Router);
@@ -24,6 +25,11 @@ export default new Router({
       path: '/signup',
       name: 'Signup',
       component: Signup,
+    },
+    {
+      path: '/article/new',
+      name: 'ArticleForm',
+      component: ArticleForm,
     },
     {
       path: '/article/:id',
