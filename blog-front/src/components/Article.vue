@@ -2,11 +2,16 @@
   <div>
     <h1>{{article.title}}</h1>
     <hr>
+    <div class="alert alert-danger" v-if="error">{{ error }}</div>
     <div v-if="hasArticle()" class="mb-3">
       <router-link :to="{ path: `/article/${article.id}/edit` }" class="btn btn-outline-primary">
         <i class="fas fa-edit"></i>
         Edit
       </router-link>
+      <button @click="deleteArticle" type="button" class="btn btn-outline-danger">
+        <i class="fas fa-eraser"></i>
+        Delete
+      </button>
     </div>
     <div class="mb-5">
       <p :class="$style.articleBody">{{article.body}}</p>
@@ -49,6 +54,7 @@ export default {
       article: '',
       user: '',
       commentBody: '',
+      error: '',
     };
   },
   created() {
@@ -80,6 +86,16 @@ export default {
     },
     hasArticle() {
       return this.user.id === this.article.user_id;
+    },
+    deleteArticle() {
+      this.$http.secured.delete(`/articles/${this.article.id}`)
+        .then(() => {
+          this.$router.replace('/');
+        })
+        .catch(error => this.setError(error, 'Cannot delete article'));
+    },
+    setError(error, text) {
+      this.error = (error.response && error.response.data && error.response.data.error) || text;
     },
   },
 };

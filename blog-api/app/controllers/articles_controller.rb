@@ -40,7 +40,12 @@ class ArticlesController < ApplicationController
 
   # DELETE /articles/1
   def destroy
-    @article.destroy
+    if @article.user == current_user
+      @article.destroy
+    else
+      render json: { errors: "Cannot delete" }, status: :bad_request
+    end
+
   end
 
   private
